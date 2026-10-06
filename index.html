@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Gửi Tuyết Vy 🎁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<audio id="bgMusic" src="media/birthday.mp3" loop preload="auto"></audio>
+<audio id="bgMusic2" src="media/birthday-2.mp3" loop preload="auto"></audio>
+
+<div class="dark-overlay" id="darkOverlay"></div>
+<div class="spotlight-overlay" id="spotlightOverlay"></div>
+<div class="petals-container" id="petalsContainer"></div>
+
+<!-- LOADING -->
+<div class="screen active" id="loading">
+    <div class="loading-flame"></div>
+    <p class="loading-text">đang chuẩn bị món quà sinh nhật…</p>
+    <p class="loading-tap" id="loadingTap">✦ Chạm để mở quà ✦</p>
+</div>
+
+<!-- OPENING -->
+<div class="screen" id="opening">
+    <div class="opening-stars" id="openingStars"></div>
+
+    <div class="opening-balloons">
+        <svg class="balloon balloon-1" viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="50" rx="35" ry="45" stroke="#E8CF94" stroke-width="2"/>
+            <path d="M50 95 Q48 130 50 160" stroke="#E8CF94" stroke-width="2" fill="none"/>
+        </svg>
+        <svg class="balloon balloon-2" viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="50" rx="35" ry="45" stroke="#E8CF94" stroke-width="2"/>
+            <path d="M50 95 Q52 130 50 160" stroke="#E8CF94" stroke-width="2" fill="none"/>
+        </svg>
+    </div>
+
+    <h1 class="opening-title">Happy Birthday</h1>
+    <div class="opening-date">
+        <span class="arrow" id="openingArrow">→</span>
+        <div class="slot-day">
+            <div class="slot-strip" id="slotDay"></div>
+        </div>
+        <div class="slot-month">
+            <div class="slot-strip" id="slotMonth"></div>
+        </div>
+    </div>
+</div>
+
+<!-- INTRO -->
+<div class="screen" id="intro">
+    <img class="garland" src="images/garland-bunting-01.webp" alt="">
+    <div class="cake-block">
+        <div class="candle-zone" id="candleZone">
+            <svg class="candle-ring" id="candleRing" viewBox="0 0 100 100">
+                <circle class="ring-bg" cx="50" cy="50" r="46"></circle>
+                <circle class="ring-fill" id="ringFill" cx="50" cy="50" r="46"></circle>
+            </svg>
+            <div class="candle-body">
+                <div class="flame" id="flame"></div>
+                <div class="candle"></div>
+            </div>
+            <div class="sparks" id="sparks"></div>
+            <div class="match-stick" id="matchStick">
+                <div class="match-flame"></div>
+            </div>
+        </div>
+        <img class="cake-img" src="images/cake-new.webp" alt="Bánh sinh nhật">
+    </div>
+    <p class="intro-line1">Có một món quà nhỏ dành cho em…</p>
+    <p class="intro-line2">Nhưng trước khi mở, thổi nến trước nhé 🎂</p>
+    <p class="intro-hint" id="introHint">đang thắp nến cho em…</p>
+</div>
+
+<!-- BEATS -->
+<div class="screen dark" id="beats">
+    <p class="beat-text" id="beatText"></p>
+</div>
+
+<!-- BLACKOUT -->
+<div class="screen dark" id="blackout">
+    <p class="blackout-text">đang thu gom những kỷ niệm…</p>
+</div>
+
+<!-- WISH -->
+<div class="screen" id="wish">
+    <p class="kicker">Một điều ước</p>
+    <h2 class="wish-title">Bây giờ… chọn một điều ước cho ngày sinh nhật của em.</h2>
+    <div class="wish-grid" id="wishGrid">
+        <button class="wish-card" data-wish="Sớm được về nhà">
+            <img src="images/wish-tag-01.webp" alt="">
+            <span>Sớm được về nhà</span>
+        </button>
+        <button class="wish-card" data-wish="Ăn ngon, ngủ đủ, không stress">
+            <img src="images/wish-tag-01.webp" alt="">
+            <span>Ăn ngon, ngủ đủ, không stress</span>
+        </button>
+        <button class="wish-card" data-wish="Nhiều tiền, đẹp gái">
+            <img src="images/wish-tag-01.webp" alt="">
+            <span>Nhiều tiền, đẹp gái</span>
+        </button>
+        <button class="wish-card" data-wish="Mạnh mẽ, tự tin hơn mỗi ngày">
+            <img src="images/wish-tag-01.webp" alt="">
+            <span>Mạnh mẽ, tự tin hơn mỗi ngày</span>
+        </button>
+    </div>
+    <p class="wish-reply" id="wishReply">Điều ước đã được nhận. Mong nó từ từ thành hiện thực.</p>
+</div>
+
+<!-- HEART -->
+<div class="screen" id="heart">
+    <div class="heart-grid" id="heartGrid"></div>
+    <p class="heart-caption">Tất cả những kỷ niệm nhỏ này là dành cho em.</p>
+    <h2 class="heart-title">Chúc Mừng Sinh Nhật, Em.</h2>
+    <p class="heart-sub">Hôm nay em nhất định phải được ăn mừng.</p>
+    <button class="btn-outline" id="toLetter">Có một lá thư dành cho em →</button>
+</div>
+
+<!-- LETTER -->
+<div class="screen" id="letter">
+    <p class="kicker">Lá thư nhỏ</p>
+    <div class="letter-paper" id="letterPaper">
+        <p class="letter-body" id="letterBody"></p>
+        <p class="letter-sign" id="letterSign">— Bảo</p>
+    </div>
+    <button class="btn-outline fade-hidden" id="toFinal">Vẫn còn nữa →</button>
+</div>
+
+<!-- FINAL -->
+<div class="screen" id="final">
+    <div class="final-card">
+        <p class="kicker">Dành cho em</p>
+        <h2 class="final-title">Chúc Mừng Sinh Nhật, Em</h2>
+        <p class="final-from">từ Bảo</p>
+        <div class="divider"></div>
+        <p class="final-msg">Mong điều ước em chọn lúc nãy thật sự tìm được đường đến với em trong năm nay.</p>
+    </div>
+    <button class="btn-primary" id="toStarlight">Gửi điều ước lên trời ✨</button>
+    <button class="btn-text" id="restart">Bắt đầu lại từ đầu</button>
+</div>
+
+<!-- STARLIGHT -->
+<div class="screen dark" id="starlight">
+    <div class="sky" id="sky">
+        <span class="star" style="left:20%;top:30%"></span>
+        <span class="star" style="left:70%;top:20%"></span>
+        <span class="star" style="left:40%;top:60%"></span>
+        <span class="star" style="left:80%;top:50%"></span>
+        <span class="star" style="left:15%;top:70%"></span>
+        <span class="star" style="left:55%;top:35%"></span>
+        <span class="star" style="left:25%;top:45%"></span>
+    </div>
+    <div class="starlight-content">
+        <p class="kicker">Gửi lên trời</p>
+        <h2 class="starlight-title">Biến điều ước thành sao băng</h2>
+        <button class="star-btn" id="starBtn">✦</button>
+        <p class="starlight-sub">Chạm vào ngôi sao để gửi điều ước của em lên trời đêm.</p>
+        <p class="starlight-sent" id="starlightSent"></p>
+    </div>
+    
+    <!-- ✅ NÚT MỞ QUÀ 2 — CÓ ONCLICK TẮT NHẠC -->
+    <a href="https://baotool.github.io/made-for-tuyetvy/" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="gift-next-btn"
+       id="restart2"
+       onclick="var m1=document.getElementById('bgMusic'); var m2=document.getElementById('bgMusic2'); if(m1){m1.pause(); m1.currentTime=0;} if(m2){m2.pause(); m2.currentTime=0;}">
+        🎁 Món quà tiếp theo dành cho em →
+    </a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-hint">Chạm để đóng</p>
+</div>
+
+<style>
+    /* ✅ CSS INLINE — đảm bảo nút hiện đúng, không bị override */
+    .gift-next-btn {
+        display: inline-block !important;
+        margin-top: 30px !important;
+        padding: 14px 28px !important;
+        background: #c98a3a !important;
+        color: #241108 !important;
+        font-family: 'Cormorant Garamond', Georgia, serif !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        text-decoration: none !important;
+        border-radius: 999px !important;
+        border: none !important;
+        cursor: pointer !important;
+        box-shadow: 0 0 24px 2px rgba(201,138,58,0.55) !important;
+        z-index: 9999 !important;
+        position: relative !important;
+        pointer-events: auto !important;
+    }
+    .gift-next-btn:hover {
+        filter: brightness(1.15) !important;
+        transform: translateY(-2px) !important;
+    }
+</style>
+
+<script src="js/main.js"></script>
+</body>
+</html>
